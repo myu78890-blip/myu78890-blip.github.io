@@ -13,218 +13,294 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-zinc-950 text-zinc-100 font-['Inter'] antialiased selection:bg-amber-500/30">
+<body class="bg-zinc-950 text-zinc-100 font-['Inter'] antialiased selection:bg-amber-500/30 overflow-x-hidden relative">
 
     <!-- ========================================================= -->
-    <!-- 1. BARRA SUPERIOR (SENCILLA Y LIMPIA)                     -->
+    <!-- DECORACIÓN DE FONDO (LUCES AMBIENTALES ESTILO DAVINCI)    -->
     <!-- ========================================================= -->
-    <header class="sticky top-0 z-40 bg-zinc-950/85 backdrop-blur-md border-b border-zinc-800/80">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-            <!-- Nombre / Logo con toque DaVinci -->
-            <a href="#" class="flex items-center gap-2.5">
-                <div class="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-700 flex items-center justify-center relative">
+    <div class="pointer-events-none fixed inset-0 overflow-hidden -z-10" aria-hidden="true">
+        <div class="absolute -top-24 -left-24 w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-amber-500/10 blur-3xl"></div>
+        <div class="absolute top-1/3 -right-24 w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-sky-500/10 blur-3xl"></div>
+        <div class="absolute bottom-0 left-1/3 w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-rose-500/5 blur-3xl"></div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- 1. BARRA SUPERIOR (RESPONSIVE PARA TELÉFONO Y PC)         -->
+    <!-- ========================================================= -->
+    <header class="sticky top-0 z-40 bg-zinc-950/80 backdrop-blur-lg border-b border-zinc-800/80">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+            <!-- Logo con ruedas de color de DaVinci -->
+            <a href="#" class="flex items-center gap-2.5 shrink-0">
+                <div class="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-700/80 flex items-center justify-center relative shadow-inner">
                     <span class="w-2 h-2 rounded-full bg-rose-500 absolute top-1.5 left-1.5"></span>
                     <span class="w-2 h-2 rounded-full bg-emerald-400 absolute bottom-1.5 left-1.5"></span>
                     <span class="w-2 h-2 rounded-full bg-sky-400 absolute bottom-1.5 right-1.5"></span>
                     <span class="w-1.5 h-1.5 rounded-full bg-amber-400 absolute top-1.5 right-1.5"></span>
                 </div>
-                <span class="font-extrabold tracking-wide text-white uppercase text-sm sm:text-base">
-                    Spoore <span class="text-amber-400">Lykn</span>
-                </span>
+                <div class="leading-tight">
+                    <span class="block font-extrabold tracking-wide text-white uppercase text-sm sm:text-base">
+                        Spoore <span class="text-amber-400">Lykn</span>
+                    </span>
+                    <span class="block text-[10px] text-zinc-400 font-medium tracking-wider uppercase">Video Editor</span>
+                </div>
             </a>
 
-            <!-- Controles de editor (ocultos al público hasta ingresar tu código secreto) -->
-            <div id="adminControls" class="hidden items-center gap-2">
-                <button id="openUploadBtn" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-semibold text-xs sm:text-sm transition active:scale-95">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-                    Subir Video
-                </button>
-                <button id="logoutAdminBtn" class="px-3 py-2 rounded-xl bg-zinc-900 border border-zinc-700 hover:border-zinc-500 text-zinc-300 text-xs font-medium transition">
-                    Salir
-                </button>
-            </div>
+            <!-- Navegación adaptable -->
+            <nav class="flex items-center gap-1 sm:gap-2">
+                <a href="#proyectos" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-medium text-zinc-300 hover:text-white hover:bg-zinc-900 transition">
+                    Videos
+                </a>
+                <a href="#davinci" class="hidden sm:inline-block px-3 py-2 rounded-xl text-xs sm:text-sm font-medium text-zinc-300 hover:text-white hover:bg-zinc-900 transition">
+                    DaVinci
+                </a>
+                <a href="#contacto" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-zinc-950 text-xs sm:text-sm font-bold transition shadow-lg shadow-amber-500/15">
+                    Contacto
+                </a>
+            </nav>
         </div>
     </header>
 
     <!-- ========================================================= -->
-    <!-- 2. PORTADA CORTA Y DIRECTA                                -->
+    <!-- 2. PORTADA CON DETALLE VISUAL DE LÍNEA DE TIEMPO          -->
     <!-- ========================================================= -->
-    <section class="max-w-5xl mx-auto px-4 sm:px-6 pt-16 pb-12 sm:pt-20 sm:pb-16 text-center">
-        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-medium text-zinc-300 mb-5">
-            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            Editando en DaVinci Resolve
-        </span>
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 pt-12 pb-12 sm:pt-20 sm:pb-16 text-center">
+        <!-- Etiqueta de estado -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900/90 border border-zinc-800 text-xs font-medium text-zinc-300 mb-6 shadow-sm">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+            </span>
+            Editando y aprendiendo en DaVinci Resolve
+        </div>
 
-        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-            Spoore <span class="text-amber-400">Lykn</span>
+        <!-- Título principal -->
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white">
+            Spoore <span class="bg-gradient-to-r from-amber-300 via-amber-400 to-orange-500 bg-clip-text text-transparent">Lykn</span>
         </h1>
 
-        <p class="mt-4 text-zinc-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-            Editor de video en crecimiento. Estoy aprendiendo y practicando día a día en <strong class="text-zinc-200">DaVinci Resolve</strong>. Aquí subo mis proyectos y avances.
+        <p class="mt-4 text-zinc-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed px-2">
+            Bienvenido a mi portafolio de edición de video. Estoy comenzando mi camino en <strong class="text-zinc-200">DaVinci Resolve</strong>, mejorando en cada corte, transición y ajuste de color.
         </p>
+
+        <!-- Botones principales (cómodos para tocar en teléfono) -->
+        <div class="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3 px-4 sm:px-0">
+            <a href="#proyectos" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white hover:bg-zinc-200 text-zinc-950 font-bold text-sm transition shadow-lg">
+                Ver mis proyectos
+            </a>
+            <a href="#contacto" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-200 font-semibold text-sm transition">
+                Hablar conmigo
+            </a>
+        </div>
+
+        <!-- Decoración: Mini Timeline estilo DaVinci Resolve -->
+        <div class="mt-10 sm:mt-12 max-w-2xl mx-auto rounded-2xl bg-zinc-900/80 border border-zinc-800/90 p-3.5 sm:p-4 shadow-2xl text-left">
+            <div class="flex items-center justify-between text-[11px] text-zinc-400 pb-2.5 mb-3 border-b border-zinc-800/80">
+                <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/80"></span>
+                    <span class="ml-1.5 font-semibold text-zinc-300">Timeline_Portafolio_v1</span>
+                </div>
+                <span class="font-mono text-amber-400 bg-zinc-950 px-2 py-0.5 rounded-md border border-zinc-800">00:01:24:12 • 24 FPS</span>
+            </div>
+
+            <!-- Pistas visuales de video y audio -->
+            <div class="relative space-y-2 py-1">
+                <!-- Cabezal rojo de reproducción -->
+                <div class="absolute top-0 bottom-0 left-1/3 w-0.5 bg-rose-500 z-10">
+                    <div class="w-2.5 h-2.5 bg-rose-500 rounded-sm -ml-1 -mt-1"></div>
+                </div>
+
+                <!-- Pista V1 (Video) -->
+                <div class="flex items-center gap-2">
+                    <span class="w-7 text-[10px] font-mono text-zinc-500 shrink-0">V1</span>
+                    <div class="flex-1 grid grid-cols-12 gap-1.5 h-6">
+                        <div class="col-span-4 rounded-md bg-sky-500/25 border border-sky-400/40 px-2 flex items-center text-[10px] text-sky-200 truncate">Intro.mp4</div>
+                        <div class="col-span-5 rounded-md bg-amber-500/25 border border-amber-400/40 px-2 flex items-center text-[10px] text-amber-200 truncate">Color_Grade_01</div>
+                        <div class="col-span-3 rounded-md bg-sky-500/25 border border-sky-400/40 px-2 flex items-center text-[10px] text-sky-200 truncate">Outro</div>
+                    </div>
+                </div>
+
+                <!-- Pista A1 (Audio) -->
+                <div class="flex items-center gap-2">
+                    <span class="w-7 text-[10px] font-mono text-zinc-500 shrink-0">A1</span>
+                    <div class="flex-1 grid grid-cols-12 gap-1.5 h-5">
+                        <div class="col-span-9 rounded-md bg-emerald-500/20 border border-emerald-400/35 px-2 flex items-center text-[10px] text-emerald-200 truncate">Beat_Sincronizado.wav</div>
+                        <div class="col-span-3 rounded-md bg-emerald-500/20 border border-emerald-400/35 px-2 flex items-center text-[10px] text-emerald-200 truncate">SFX</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- ========================================================= -->
-    <!-- 3. GALERÍA DE VIDEOS                                      -->
+    <!-- 3. GALERÍA DE VIDEOS CON FILTROS                          -->
     <!-- ========================================================= -->
-    <main class="max-w-5xl mx-auto px-4 sm:px-6 pb-20">
-        <div class="flex items-center justify-between mb-6">
-            <h2 class="text-lg sm:text-xl font-bold text-white">Mis Proyectos</h2>
-            <span id="videoCount" class="text-xs font-medium text-zinc-400 bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full">0 videos</span>
+    <main id="proyectos" class="max-w-5xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20 scroll-mt-20">
+        <!-- Encabezado y filtros -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <div class="flex items-center gap-3">
+                <h2 class="text-xl sm:text-2xl font-bold text-white">Mis Proyectos</h2>
+                <span id="videoCount" class="text-xs font-medium text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded-full">0 videos</span>
+            </div>
+
+            <!-- Botones de filtro (deslizables en teléfono si hay varios) -->
+            <div id="filterBar" class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
+                <button data-filter="Todos" class="filter-btn shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-amber-500 text-zinc-950 transition">Todos</button>
+                <button data-filter="Edición" class="filter-btn shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white transition">Edición</button>
+                <button data-filter="Color" class="filter-btn shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white transition">Color</button>
+                <button data-filter="Vertical" class="filter-btn shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white transition">Shorts / TikTok</button>
+            </div>
         </div>
 
         <!-- Cuadrícula de videos -->
-        <div id="videoGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        <div id="videoGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"></div>
 
-        <!-- Mensaje si no hay videos -->
+        <!-- Mensaje si no hay videos en el filtro actual -->
         <div id="emptyState" class="hidden text-center py-14 px-4 rounded-2xl bg-zinc-900/50 border border-dashed border-zinc-800">
-            <p class="text-zinc-400 text-sm">Próximamente nuevos proyectos editados en DaVinci Resolve.</p>
+            <p class="text-zinc-400 text-sm">Aún no hay videos en esta categoría. Próximamente subiré más prácticas.</p>
         </div>
     </main>
 
     <!-- ========================================================= -->
-    <!-- 4. CONTACTO SENCILLO (PIE DE PÁGINA)                      -->
+    <!-- 4. SECCIÓN: MI APRENDIZAJE EN DAVINCI RESOLVE             -->
     <!-- ========================================================= -->
-    <footer class="border-t border-zinc-800/80 bg-zinc-900/30">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-5">
-            <div class="text-center sm:text-left">
-                <p class="text-sm font-bold text-white">¿Quieres colaborar o hablar?</p>
-                <button id="copyEmailBtn" class="mt-1 text-xs sm:text-sm text-amber-400 hover:text-amber-300 transition">
-                    contacto@spoorelykn.com <span class="text-zinc-500 ml-1">(clic para copiar)</span>
-                </button>
+    <section id="davinci" class="max-w-5xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20 scroll-mt-20">
+        <div class="rounded-3xl bg-zinc-900/50 border border-zinc-800/80 p-6 sm:p-8">
+            <div class="max-w-xl mb-6">
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-400">Herramienta principal</span>
+                <h2 class="mt-1 text-xl sm:text-2xl font-bold text-white">Lo que practico en DaVinci Resolve</h2>
+                <p class="mt-2 text-xs sm:text-sm text-zinc-400">Cada video que subo es un paso más aprendiendo el flujo profesional de edición.</p>
             </div>
 
-            <!-- Cambia los "#" por los enlaces de tus redes cuando quieras -->
-            <div class="flex items-center gap-3 text-xs font-medium text-zinc-400">
-                <a href="#" onclick="showToast('Cambia este enlace por tu YouTube en el código'); return false;" class="px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-800 hover:text-white transition">YouTube</a>
-                <a href="#" onclick="showToast('Cambia este enlace por tu Instagram en el código'); return false;" class="px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-800 hover:text-white transition">Instagram</a>
-                <a href="#" onclick="showToast('Cambia este enlace por tu TikTok en el código'); return false;" class="px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-800 hover:text-white transition">TikTok</a>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <!-- Tarjeta 1 -->
+                <div class="rounded-2xl bg-zinc-950/70 border border-zinc-800/90 p-5">
+                    <div class="w-9 h-9 rounded-xl bg-sky-500/15 border border-sky-500/30 text-sky-400 flex items-center justify-center mb-3">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-white text-sm">Corte y Ritmo</h3>
+                    <p class="mt-1.5 text-xs text-zinc-400 leading-relaxed">Cortes limpios al ritmo de la música, transiciones fluidas y manejo de línea de tiempo.</p>
+                </div>
 
-                <!-- Candado discreto para que SOLO TÚ entres al modo editor -->
-                <button id="openLoginBtn" title="Acceso de editor" class="p-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-500 hover:text-amber-400 hover:border-amber-500/40 transition">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
-                    </svg>
-                </button>
+                <!-- Tarjeta 2 -->
+                <div class="rounded-2xl bg-zinc-950/70 border border-zinc-800/90 p-5">
+                    <div class="w-9 h-9 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-400 flex items-center justify-center mb-3">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-white text-sm">Color Grading</h3>
+                    <p class="mt-1.5 text-xs text-zinc-400 leading-relaxed">Aprendiendo corrección básica, contraste, exposición y looks cinematográficos con nodos.</p>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="rounded-2xl bg-zinc-950/70 border border-zinc-800/90 p-5">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mb-3">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-white text-sm">Audio y Efectos</h3>
+                    <p class="mt-1.5 text-xs text-zinc-400 leading-relaxed">Nivelación de música, efectos de sonido (SFX) y textos animados para que el video cobre vida.</p>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- 5. CONTACTO Y PIE DE PÁGINA                               -->
+    <!-- ========================================================= -->
+    <footer id="contacto" class="border-t border-zinc-800/80 bg-zinc-900/30">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+            <div class="rounded-2xl bg-zinc-900/70 border border-zinc-800 p-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div class="text-center sm:text-left">
+                    <p class="text-base font-bold text-white">¿Te gustó mi trabajo o quieres colaborar?</p>
+                    <p class="text-xs text-zinc-400 mt-1">Escríbeme por correo o en cualquiera de mis redes.</p>
+                    <button id="copyEmailBtn" class="mt-3 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 hover:border-amber-500/50 text-xs sm:text-sm text-amber-400 hover:text-amber-300 transition">
+                        <span>contacto@spoorelykn.com</span>
+                        <span class="text-[11px] text-zinc-500">(copiar)</span>
+                    </button>
+                </div>
+
+                <!-- Cambia los "#" por tus enlaces reales cuando quieras -->
+                <div class="flex flex-wrap items-center justify-center gap-2.5 text-xs font-semibold text-zinc-300">
+                    <a href="#" onclick="showToast('Cambia este enlace por tu YouTube en el código'); return false;" class="px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 hover:border-zinc-600 hover:text-white transition">YouTube</a>
+                    <a href="#" onclick="showToast('Cambia este enlace por tu Instagram en el código'); return false;" class="px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 hover:border-zinc-600 hover:text-white transition">Instagram</a>
+                    <a href="#" onclick="showToast('Cambia este enlace por tu TikTok en el código'); return false;" class="px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 hover:border-zinc-600 hover:text-white transition">TikTok</a>
+                </div>
+            </div>
+
+            <p class="mt-6 text-center text-[11px] text-zinc-500">
+                © 2026 Spoore Lykn • Editado con pasión en DaVinci Resolve
+            </p>
         </div>
     </footer>
 
     <!-- ========================================================= -->
-    <!-- MODAL 1: REPRODUCTOR DE VIDEO                             -->
+    <!-- REPRODUCTOR DE VIDEO (ADAPTABLE A HORIZONTAL Y VERTICAL)  -->
     <!-- ========================================================= -->
-    <div id="playerModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
-        <div class="w-full max-w-3xl rounded-2xl bg-zinc-900 border border-zinc-800 overflow-hidden shadow-2xl">
-            <div class="flex items-center justify-between px-5 py-3.5 border-b border-zinc-800">
-                <h3 id="playerTitle" class="font-bold text-white text-sm sm:text-base truncate"></h3>
-                <button id="closePlayerBtn" class="p-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300">✕</button>
-            </div>
-            <div id="playerContainer" class="aspect-video w-full bg-black"></div>
-            <div class="p-5">
-                <p id="playerDesc" class="text-sm text-zinc-300"></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- ========================================================= -->
-    <!-- MODAL 2: SUBIR NUEVO VIDEO                                -->
-    <!-- ========================================================= -->
-    <div id="uploadModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
-        <div class="w-full max-w-md rounded-2xl bg-zinc-900 border border-zinc-800 overflow-hidden shadow-2xl">
-            <div class="flex items-center justify-between px-5 py-4 border-b border-zinc-800">
-                <h3 class="font-bold text-white">Agregar Video</h3>
-                <button id="closeUploadBtn" class="p-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300">✕</button>
-            </div>
-
-            <form id="videoForm" class="p-5 space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold text-zinc-300 mb-1">Título del video *</label>
-                    <input type="text" id="vidTitle" required placeholder="Ej. Mi primera edición en DaVinci" class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-white focus:outline-none focus:border-amber-500">
+    <div id="playerModal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-md">
+        <div id="playerDialog" class="w-full max-w-3xl max-h-[92vh] flex flex-col rounded-2xl bg-zinc-900 border border-zinc-800 overflow-hidden shadow-2xl">
+            <div class="flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 border-b border-zinc-800 shrink-0">
+                <div class="min-w-0">
+                    <h3 id="playerTitle" class="font-bold text-white text-sm sm:text-base truncate"></h3>
+                    <span id="playerPlatform" class="text-[11px] text-amber-400 font-medium"></span>
                 </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-zinc-300 mb-1">Enlace de YouTube o MP4</label>
-                    <input type="url" id="vidUrl" placeholder="https://www.youtube.com/watch?v=..." class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-white focus:outline-none focus:border-amber-500">
-                </div>
-
-                <div class="p-3 rounded-xl bg-zinc-950 border border-dashed border-zinc-700">
-                    <label class="block text-xs font-semibold text-amber-400 mb-1">O sube un video desde tu PC / Celular</label>
-                    <input type="file" id="vidFile" accept="video/*" class="w-full text-xs text-zinc-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-zinc-800 file:text-white cursor-pointer">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-zinc-300 mb-1">Descripción corta *</label>
-                    <textarea id="vidDesc" rows="2" required placeholder="¿Qué practicaste en este video?" class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-white focus:outline-none focus:border-amber-500 resize-none"></textarea>
-                </div>
-
-                <button type="submit" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-sm transition">
-                    Guardar en Portafolio
+                <button id="closePlayerBtn" aria-label="Cerrar reproductor" class="w-9 h-9 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 flex items-center justify-center shrink-0 transition">
+                    ✕
                 </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- ========================================================= -->
-    <!-- MODAL 3: ACCESO PRIVADO CON CÓDIGO                        -->
-    <!-- ========================================================= -->
-    <div id="loginModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
-        <div class="w-full max-w-xs rounded-2xl bg-zinc-900 border border-zinc-800 overflow-hidden shadow-2xl">
-            <div class="flex items-center justify-between px-5 py-4 border-b border-zinc-800">
-                <h3 class="font-bold text-white text-sm">Acceso de Editor</h3>
-                <button id="closeLoginBtn" class="p-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300">✕</button>
             </div>
-
-            <form id="loginForm" class="p-5 space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold text-zinc-300 mb-1.5">Código de autorización</label>
-                    <input type="password" id="adminCodeInput" required placeholder="Ingresa tu código..." class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-sm text-white focus:outline-none focus:border-amber-500">
-                    <p id="loginError" class="hidden text-xs text-rose-400 mt-2">Código incorrecto. Intenta de nuevo.</p>
-                </div>
-
-                <button type="submit" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-sm transition">
-                    Desbloquear
-                </button>
-            </form>
+            <div id="playerContainer" class="aspect-video w-full bg-black overflow-hidden"></div>
+            <div class="p-4 sm:p-5 overflow-y-auto">
+                <p id="playerDesc" class="text-xs sm:text-sm text-zinc-300 leading-relaxed"></p>
+            </div>
         </div>
     </div>
 
     <!-- Notificación flotante -->
-    <div id="toast" class="fixed bottom-5 right-5 z-50 hidden px-4 py-2.5 rounded-xl bg-zinc-900 border border-amber-500/50 text-xs sm:text-sm text-white shadow-xl"></div>
+    <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:right-5 z-50 hidden px-4 py-2.5 rounded-xl bg-zinc-900 border border-amber-500/50 text-xs sm:text-sm text-white shadow-xl whitespace-nowrap"></div>
 
     <!-- ========================================================= -->
-    <!-- JAVASCRIPT (SIMPLE Y FÁCIL DE LEER)                       -->
+    <!-- JAVASCRIPT (ACEPTA YOUTUBE, DRIVE, VIMEO, TIKTOK Y MP4)   -->
     <!-- ========================================================= -->
     <script>
-        const STORAGE_KEY = 'spoore_lykn_videos_simple';
-
-        // ⚠️ TU CÓDIGO SECRETO PARA SUBIR Y BORRAR VIDEOS (cámbialo por el que tú quieras)
-        const ADMIN_CODE = 'spoore2026';
-
-        // 2 videos de ejemplo para que veas cómo se ve (puedes borrarlos al desbloquear tu modo editor)
-        const defaultVideos = [
+        // =========================================================
+        // 🎬 AQUÍ AGREGAS TUS VIDEOS (SOLO TÚ EDITAS ESTE ARCHIVO)
+        // Acepta enlaces de:
+        // - YouTube (normal, youtu.be o Shorts)
+        // - Google Drive (link compartido de tu video)
+        // - Vimeo (https://vimeo.com/123456789)
+        // - TikTok (https://www.tiktok.com/@usuario/video/123456789)
+        // - Archivos locales o directos (.mp4, .webm, .mov)
+        //
+        // Categorías disponibles: 'Edición', 'Color', 'Vertical'
+        // Campo opcional: thumb: 'portada.jpg' (si quieres poner tu propia miniatura)
+        // =========================================================
+        const MIS_VIDEOS = [
             {
-                id: 'demo-1',
                 title: 'Práctica de Cortes al Ritmo',
                 desc: 'Mi primera práctica sincronizando cortes con música y transiciones limpias en DaVinci Resolve.',
-                type: 'youtube',
-                url: 'https://www.youtube.com/watch?v=aqz-KE-bpKQ',
-                thumb: 'https://placehold.co/640x360/18181b/f59e0b?text=Edicion+01+-+DaVinci'
+                category: 'Edición',
+                url: 'https://www.youtube.com/watch?v=aqz-KE-bpKQ'
             },
             {
-                id: 'demo-2',
                 title: 'Prueba de Color Cinematográfico',
                 desc: 'Ajuste básico de contraste, exposición y tonos cálidos en la pestaña Color de DaVinci Resolve.',
-                type: 'youtube',
-                url: 'https://www.youtube.com/watch?v=LXb3EKWsInQ',
-                thumb: 'https://placehold.co/640x360/18181b/38bdf8?text=Color+Grading+02'
+                category: 'Color',
+                url: 'https://www.youtube.com/watch?v=LXb3EKWsInQ'
+            },
+            {
+                title: 'Edit Vertical para Redes',
+                desc: 'Ejemplo en formato vertical listo para Shorts, Reels o TikTok (puedes reemplazarlo por tu link de TikTok, Short, Drive o MP4).',
+                category: 'Vertical',
+                url: 'https://www.youtube.com/shorts/aqz-KE-bpKQ'
             }
         ];
 
-        let videos = [];
-        let pendingDeleteId = null;
-        let isAdmin = false; // Por defecto, nadie tiene permiso de subir ni borrar
+        let currentFilter = 'Todos';
         let toastTimer = null;
 
         // Mostrar notificación flotante
@@ -238,164 +314,204 @@
             }, 2800);
         }
 
-        // Extraer ID de enlaces de YouTube (normal, youtu.be o Shorts)
-        function extractYouTubeId(url) {
-            if (!url) return null;
-            const match = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-            return match ? match[1] : null;
-        }
+        // Detectar plataforma y extraer datos de cualquier enlace o archivo
+        function parseVideoSource(url) {
+            if (!url) return { type: 'mp4', label: 'Video MP4', isVertical: false };
 
-        // Mostrar u ocultar controles según si eres el editor
-        function updateAdminUI() {
-            const adminControls = document.getElementById('adminControls');
-            const openLoginBtn = document.getElementById('openLoginBtn');
-            if (isAdmin) {
-                adminControls.classList.remove('hidden');
-                adminControls.classList.add('flex');
-                openLoginBtn.classList.add('hidden');
-            } else {
-                adminControls.classList.add('hidden');
-                adminControls.classList.remove('flex');
-                openLoginBtn.classList.remove('hidden');
-                pendingDeleteId = null;
+            // 1. YouTube (normal, youtu.be, embed y Shorts)
+            const ytMatch = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+            if (ytMatch) {
+                const isShort = url.includes('/shorts/');
+                return {
+                    type: 'youtube',
+                    id: ytMatch[1],
+                    label: isShort ? 'YouTube Short' : 'YouTube',
+                    isVertical: isShort,
+                    embedUrl: `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&rel=0`,
+                    autoThumb: `https://img.youtube.com/vi/${ytMatch[1]}/hqdefault.jpg`
+                };
             }
-            renderVideos();
-        }
 
-        // Cargar videos guardados en el navegador
-        function loadVideos() {
-            try {
-                const saved = localStorage.getItem(STORAGE_KEY);
-                if (saved) {
-                    const parsed = JSON.parse(saved);
-                    videos = Array.isArray(parsed) ? parsed : [...defaultVideos];
-                } else {
-                    videos = [...defaultVideos];
-                }
-            } catch (err) {
-                videos = [...defaultVideos];
+            // 2. Google Drive
+            const driveMatch = url.match(/drive\.google\.com\/(?:file\/d\/|open\?id=)([a-zA-Z0-9_-]+)/);
+            if (driveMatch) {
+                return {
+                    type: 'drive',
+                    id: driveMatch[1],
+                    label: 'Google Drive',
+                    isVertical: false,
+                    embedUrl: `https://drive.google.com/file/d/${driveMatch[1]}/preview`,
+                    autoThumb: `https://drive.google.com/thumbnail?id=${driveMatch[1]}&sz=w800`
+                };
             }
-        }
 
-        // Guardar videos en el navegador (omitiendo archivos temporales locales)
-        function saveVideos() {
-            try {
-                const persistable = videos.filter(v => !v.isLocalFile);
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(persistable));
-            } catch (err) {
-                showToast('No se pudo guardar en el navegador');
+            // 3. Vimeo
+            const vimeoMatch = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+            if (vimeoMatch) {
+                return {
+                    type: 'vimeo',
+                    id: vimeoMatch[1],
+                    label: 'Vimeo',
+                    isVertical: false,
+                    embedUrl: `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1`,
+                    autoThumb: `https://vumbnail.com/${vimeoMatch[1]}.jpg`
+                };
             }
+
+            // 4. TikTok
+            const tiktokMatch = url.match(/tiktok\.com\/.*\/video\/(\d+)/);
+            if (tiktokMatch) {
+                return {
+                    type: 'tiktok',
+                    id: tiktokMatch[1],
+                    label: 'TikTok',
+                    isVertical: true,
+                    embedUrl: `https://www.tiktok.com/embed/v2/${tiktokMatch[1]}`,
+                    autoThumb: null
+                };
+            }
+
+            // 5. Archivo directo (.mp4, .webm, .mov, etc.)
+            return {
+                type: 'mp4',
+                label: 'Archivo MP4',
+                isVertical: false,
+                embedUrl: url,
+                autoThumb: null
+            };
         }
 
-        // Dibujar todas las tarjetas de video
+        // Obtener miniatura (propia, automática o respaldo)
+        function getThumbnail(video, parsed) {
+            if (video.thumb) return video.thumb;
+            if (parsed.autoThumb) return parsed.autoThumb;
+            const text = encodeURIComponent(parsed.label || 'Spoore Lykn');
+            return `https://placehold.co/640x360/18181b/f59e0b?text=${text}`;
+        }
+
+        // Dibujar todas las tarjetas de video según el filtro activo
         function renderVideos() {
             const grid = document.getElementById('videoGrid');
             const emptyState = document.getElementById('emptyState');
             const videoCount = document.getElementById('videoCount');
 
-            grid.innerHTML = '';
-            videoCount.textContent = `${videos.length} ${videos.length === 1 ? 'video' : 'videos'}`;
+            const filtered = currentFilter === 'Todos'
+                ? MIS_VIDEOS
+                : MIS_VIDEOS.filter(v => v.category === currentFilter);
 
-            if (videos.length === 0) {
+            grid.innerHTML = '';
+            videoCount.textContent = `${filtered.length} ${filtered.length === 1 ? 'video' : 'videos'}`;
+
+            if (filtered.length === 0) {
                 emptyState.classList.remove('hidden');
                 return;
             }
 
             emptyState.classList.add('hidden');
 
-            videos.forEach((video) => {
-                const isConfirming = pendingDeleteId === video.id;
+            filtered.forEach((video) => {
+                const parsed = parseVideoSource(video.url);
                 const fallbackThumb = 'https://placehold.co/640x360/18181b/f59e0b?text=Spoore+Lykn';
-                const thumbSrc = video.thumb || fallbackThumb;
+                const thumbSrc = getThumbnail(video, parsed);
 
                 const card = document.createElement('article');
-                card.className = 'group rounded-2xl bg-zinc-900/70 border border-zinc-800/90 overflow-hidden hover:border-amber-500/40 transition flex flex-col';
+                card.className = 'group rounded-2xl bg-zinc-900/75 border border-zinc-800/90 overflow-hidden hover:border-amber-500/50 active:scale-[0.99] transition duration-300 flex flex-col cursor-pointer shadow-lg';
 
                 card.innerHTML = `
-                    <div class="play-btn relative aspect-video bg-zinc-950 cursor-pointer overflow-hidden">
-                        <img src="${thumbSrc}" alt="Miniatura del video" onerror="this.src='${fallbackThumb}'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition flex items-center justify-center">
-                            <div class="w-12 h-12 rounded-full bg-amber-500/95 text-zinc-950 flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                    <div class="relative aspect-video bg-zinc-950 overflow-hidden">
+                        <img src="${thumbSrc}" alt="Miniatura del video" loading="lazy" onerror="this.src='${fallbackThumb}'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-amber-500/95 text-zinc-950 flex items-center justify-center shadow-xl group-hover:scale-110 transition">
                                 <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M8 5v14l11-7z" />
                                 </svg>
                             </div>
                         </div>
+                        <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-zinc-950/80 backdrop-blur-sm border border-zinc-700/70 text-[10px] font-semibold text-zinc-200">
+                            ${video.category || 'Edición'}
+                        </span>
+                        <span class="absolute top-2.5 right-2.5 px-2 py-1 rounded-lg bg-zinc-950/80 backdrop-blur-sm border border-zinc-700/70 text-[10px] font-medium text-amber-400">
+                            ${parsed.label}
+                        </span>
                     </div>
                     <div class="p-4 flex-1 flex flex-col justify-between gap-3">
                         <div>
-                            <h3 class="play-btn font-bold text-white text-sm sm:text-base cursor-pointer hover:text-amber-400 transition line-clamp-1"></h3>
+                            <h3 class="font-bold text-white text-sm sm:text-base group-hover:text-amber-400 transition line-clamp-1"></h3>
                             <p class="mt-1 text-xs text-zinc-400 leading-relaxed line-clamp-2"></p>
                         </div>
-                        <div class="flex items-center justify-between pt-2 border-t border-zinc-800/80">
+                        <div class="flex items-center justify-between pt-2.5 border-t border-zinc-800/80">
                             <span class="text-[11px] font-medium text-zinc-400">DaVinci Resolve</span>
-                            ${isAdmin ? `
-                                <button class="delete-btn text-xs px-2.5 py-1 rounded-lg transition ${isConfirming ? 'bg-rose-600 text-white font-semibold' : 'text-zinc-500 hover:text-rose-400'}">
-                                    ${isConfirming ? '¿Borrar?' : 'Eliminar'}
-                                </button>
-                            ` : ''}
+                            <span class="text-[11px] font-semibold text-amber-400">Reproducir →</span>
                         </div>
                     </div>
                 `;
 
-                // Asignar textos de forma segura
                 card.querySelector('h3').textContent = video.title;
                 card.querySelector('p').textContent = video.desc;
-
-                // Abrir reproductor al hacer clic
-                card.querySelectorAll('.play-btn').forEach(el => {
-                    el.addEventListener('click', () => openPlayer(video));
-                });
-
-                // Eliminar solo disponible si estás en modo editor
-                const deleteBtn = card.querySelector('.delete-btn');
-                if (deleteBtn) {
-                    deleteBtn.addEventListener('click', () => {
-                        if (!isAdmin) return;
-                        if (pendingDeleteId === video.id) {
-                            videos = videos.filter(v => v.id !== video.id);
-                            pendingDeleteId = null;
-                            saveVideos();
-                            renderVideos();
-                            showToast('Video eliminado');
-                        } else {
-                            pendingDeleteId = video.id;
-                            renderVideos();
-                        }
-                    });
-                }
+                card.addEventListener('click', () => openPlayer(video, parsed));
 
                 grid.appendChild(card);
             });
         }
 
-        // Abrir reproductor modal
-        function openPlayer(video) {
+        // Configurar botones de filtro
+        document.querySelectorAll('.filter-btn').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                currentFilter = btn.dataset.filter;
+                document.querySelectorAll('.filter-btn').forEach((b) => {
+                    if (b.dataset.filter === currentFilter) {
+                        b.className = 'filter-btn shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-amber-500 text-zinc-950 transition';
+                    } else {
+                        b.className = 'filter-btn shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white transition';
+                    }
+                });
+                renderVideos();
+            });
+        });
+
+        // Abrir reproductor modal adaptado a videos horizontales y verticales
+        function openPlayer(video, parsed) {
             const modal = document.getElementById('playerModal');
+            const dialog = document.getElementById('playerDialog');
             const container = document.getElementById('playerContainer');
+
             document.getElementById('playerTitle').textContent = video.title;
+            document.getElementById('playerPlatform').textContent = `${parsed.label} • ${video.category || 'Edición'}`;
             document.getElementById('playerDesc').textContent = video.desc;
             container.innerHTML = '';
 
-            const ytId = extractYouTubeId(video.url);
-            if (ytId) {
-                const iframe = document.createElement('iframe');
-                iframe.src = `https://www.youtube.com/embed/${ytId}?autoplay=1`;
-                iframe.className = 'w-full h-full';
-                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-                iframe.allowFullscreen = true;
-                container.appendChild(iframe);
+            // Ajustar tamaño del reproductor si es vertical (TikTok o Short)
+            const isVertical = parsed.isVertical || video.vertical === true;
+            if (isVertical) {
+                dialog.classList.remove('max-w-3xl');
+                dialog.classList.add('max-w-sm');
+                container.className = 'aspect-[9/16] max-h-[65vh] w-full bg-black overflow-hidden mx-auto';
             } else {
+                dialog.classList.remove('max-w-sm');
+                dialog.classList.add('max-w-3xl');
+                container.className = 'aspect-video w-full bg-black overflow-hidden';
+            }
+
+            if (parsed.type === 'mp4') {
                 const videoEl = document.createElement('video');
-                videoEl.src = video.url;
+                videoEl.src = parsed.embedUrl;
                 videoEl.controls = true;
                 videoEl.autoplay = true;
+                videoEl.playsInline = true; // Permite reproducción fluida en iPhone/Android
                 videoEl.className = 'w-full h-full bg-black';
                 container.appendChild(videoEl);
+            } else {
+                const iframe = document.createElement('iframe');
+                iframe.src = parsed.embedUrl;
+                iframe.className = 'w-full h-full border-0';
+                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+                iframe.allowFullscreen = true;
+                container.appendChild(iframe);
             }
 
             modal.classList.remove('hidden');
             modal.classList.add('flex');
+            document.body.classList.add('overflow-hidden');
         }
 
         // Cerrar reproductor y detener video
@@ -404,129 +520,20 @@
             document.getElementById('playerContainer').innerHTML = '';
             modal.classList.add('hidden');
             modal.classList.remove('flex');
+            document.body.classList.remove('overflow-hidden');
         }
 
-        // Abrir y cerrar ventana de subida (solo si está autorizado)
-        const uploadModal = document.getElementById('uploadModal');
-        document.getElementById('openUploadBtn').onclick = () => {
-            if (!isAdmin) return;
-            uploadModal.classList.remove('hidden');
-            uploadModal.classList.add('flex');
-        };
-        document.getElementById('closeUploadBtn').onclick = () => {
-            uploadModal.classList.add('hidden');
-            uploadModal.classList.remove('flex');
-        };
         document.getElementById('closePlayerBtn').onclick = closePlayer;
-
-        // Cerrar modales al hacer clic fuera
         document.getElementById('playerModal').addEventListener('click', (e) => {
             if (e.target.id === 'playerModal') closePlayer();
         });
-        uploadModal.addEventListener('click', (e) => {
-            if (e.target.id === 'uploadModal') {
-                uploadModal.classList.add('hidden');
-                uploadModal.classList.remove('flex');
-            }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePlayer();
         });
 
-        // Ventana de código secreto (Modo Editor)
-        const loginModal = document.getElementById('loginModal');
-        const loginError = document.getElementById('loginError');
-        const adminCodeInput = document.getElementById('adminCodeInput');
-
-        document.getElementById('openLoginBtn').onclick = () => {
-            loginError.classList.add('hidden');
-            adminCodeInput.value = '';
-            loginModal.classList.remove('hidden');
-            loginModal.classList.add('flex');
-            setTimeout(() => adminCodeInput.focus(), 50);
-        };
-
-        document.getElementById('closeLoginBtn').onclick = () => {
-            loginModal.classList.add('hidden');
-            loginModal.classList.remove('flex');
-        };
-
-        loginModal.addEventListener('click', (e) => {
-            if (e.target.id === 'loginModal') {
-                loginModal.classList.add('hidden');
-                loginModal.classList.remove('flex');
-            }
-        });
-
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (adminCodeInput.value.trim() === ADMIN_CODE) {
-                isAdmin = true;
-                loginModal.classList.add('hidden');
-                loginModal.classList.remove('flex');
-                updateAdminUI();
-                showToast('Modo editor desbloqueado');
-            } else {
-                loginError.classList.remove('hidden');
-            }
-        });
-
-        document.getElementById('logoutAdminBtn').onclick = () => {
-            isAdmin = false;
-            updateAdminUI();
-            showToast('Saliste del modo editor');
-        };
-
-        // Guardar nuevo video desde el formulario (solo si está autorizado)
-        document.getElementById('videoForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (!isAdmin) return;
-
-            const title = document.getElementById('vidTitle').value.trim();
-            const urlInput = document.getElementById('vidUrl').value.trim();
-            const fileInput = document.getElementById('vidFile');
-            const desc = document.getElementById('vidDesc').value.trim();
-            const file = fileInput.files && fileInput.files[0];
-
-            if (!urlInput && !file) {
-                showToast('Agrega un enlace de YouTube/MP4 o selecciona un archivo');
-                return;
-            }
-
-            let finalUrl = urlInput;
-            let thumb = 'https://placehold.co/640x360/18181b/f59e0b?text=Spoore+Lykn';
-            let isLocalFile = false;
-
-            if (file) {
-                finalUrl = URL.createObjectURL(file);
-                thumb = 'https://placehold.co/640x360/18181b/34d399?text=Video+Local';
-                isLocalFile = true;
-            } else {
-                const ytId = extractYouTubeId(urlInput);
-                if (ytId) {
-                    thumb = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
-                }
-            }
-
-            const newVideo = {
-                id: 'vid-' + Date.now(),
-                title,
-                desc,
-                url: finalUrl,
-                thumb,
-                isLocalFile
-            };
-
-            videos.unshift(newVideo);
-            saveVideos();
-            renderVideos();
-
-            document.getElementById('videoForm').reset();
-            uploadModal.classList.add('hidden');
-            uploadModal.classList.remove('flex');
-            showToast(isLocalFile ? 'Video local agregado (vista previa)' : 'Video guardado en tu portafolio');
-        });
-
-        // Copiar correo al portapapeles de forma compatible
+        // Copiar correo al portapapeles
         document.getElementById('copyEmailBtn').addEventListener('click', () => {
-            const email = 'contacto@spoorelykn.com';
+            const email = 'eort856@gmail.com';
             const tempInput = document.createElement('textarea');
             tempInput.value = email;
             document.body.appendChild(tempInput);
@@ -540,9 +547,8 @@
             document.body.removeChild(tempInput);
         });
 
-        // Iniciar la página
-        loadVideos();
-        updateAdminUI();
+        // Cargar la galería al iniciar
+        renderVideos();
     </script>
 </body>
 </html>
